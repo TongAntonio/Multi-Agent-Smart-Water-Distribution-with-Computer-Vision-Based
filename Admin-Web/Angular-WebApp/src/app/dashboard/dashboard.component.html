@@ -1,0 +1,181 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Dashboard</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-8">
+            <div class="col-lg-6 col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-beer fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{totalglass}}</div>
+                                    <div>แก้ว</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">จำนวนแก้วที่ขายได้</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-btc fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{totalMoney}}</div>
+                                    <div>บาท</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">จำนวนเงิน</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-smile-o fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{totalUser}}</div>
+                                    <div>คน</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">จำนวนลูกค้า</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="panel" [ngClass]="{'panel-green': mode, 'panel-red': !mode}">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">                                         
+                                    <div *ngIf="mode==0" class="huge">OFF</div>
+                                    <div *ngIf="mode==1" class="huge">ON</div>
+                                    <button (click)="turnOnOff()" type="button" class="btn btn-info"><i class="fa fa-power-off"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">สถานะเครื่อง</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            Sensor (Real-Time) 
+                        </div>
+                        <div class="panel-body">
+                                <div class="list-group">
+                                        <a href="#" class="list-group-item">
+                                            <i class="fa fa-ellipsis-v fa-fw"></i> ระดับน้ำ (Raw Data)
+                                            <span class="pull-right text-muted small"><em>{{weight | async}}</em>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="list-group-item">
+                                            <i class="fa fa-ellipsis-v fa-fw"></i> ระดับน้ำ
+                                            <span class="pull-right text-muted small"><em>{{waterlevel | async}} %</em>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="list-group-item">
+                                            <i class="fa fa-sun-o fa-fw"></i> อุณหภูมิ
+                                            <span class="pull-right text-muted small"><em>{{temperature | async}} c</em>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="list-group-item">
+                                            <i class="fa fa-tint fa-fw"></i> ความชื้น
+                                            <span class="pull-right text-muted small"><em>{{humidity | async}} %</em>
+                                            </span>
+                                        </a>
+                                    </div>            
+                        </div>
+                    </div>
+                </div>
+    </div>
+    <!-- /.col-lg-8 -->
+    <div class="col-lg-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+               เวลาขาย
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                    <div class="alert alert-success">
+                           <h3> <i class="fa fa-clock-o fa-fw"></i> {{startHr | async}}.{{startMin | async}} - {{endHr | async}}.{{endMin | async}}</h3>
+                    </div>
+                    <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                ตั้งเวลา
+                            </div>
+                            <div class="panel-body">                                   
+                                    <form role="form">
+                                        <label>เริ่ม</label>
+                                        <div class="form-group input-group">
+                                            <input #in1 type="text" class="form-control">
+                                            <span class="input-group-addon">น.</span>
+                                        </div>
+                                        <div class="form-group input-group">
+                                                <input #in2  type="text" class="form-control">
+                                                <span class="input-group-addon">นาที</span>
+                                        </div>
+                                        <label>ถึง</label>
+                                        <div class="form-group input-group">
+                                                <input #in3  type="text" class="form-control">
+                                                <span class="input-group-addon">น.</span>
+                                        </div>
+                                        <div class="form-group input-group">
+                                                <input #in4  type="text" class="form-control">
+                                                <span class="input-group-addon">นาที</span>
+                                        </div>
+                                    </form>                                        
+                             </div>
+                            <div class="panel-footer">
+                                    <button (click)="setTime(in1.value,in2.value,in3.value,in4.value)" class="btn btn-primary btn-block">Save</button>
+                            </div>
+                    </div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+    <!-- /.col-lg-4 -->
+</div>
+<!-- /.row -->
