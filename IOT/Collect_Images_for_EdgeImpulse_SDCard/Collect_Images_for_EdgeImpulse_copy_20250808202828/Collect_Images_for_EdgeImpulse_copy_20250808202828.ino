@@ -73,6 +73,7 @@ camera_config_t camera_config = {
 //-------------------------
 void handleCapture() {
   camera_fb_t * fb = esp_camera_fb_get();
+  Serial.println(fb->width); // ถ้า fb เป็น NULL จะ crash ทันที
   if (!fb) {
     server.send(500, "text/plain", "Capture failed");
     return;
