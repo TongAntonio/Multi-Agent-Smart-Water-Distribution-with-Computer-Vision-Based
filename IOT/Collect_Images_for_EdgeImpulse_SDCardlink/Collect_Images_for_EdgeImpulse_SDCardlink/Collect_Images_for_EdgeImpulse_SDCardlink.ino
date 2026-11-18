@@ -3,6 +3,7 @@
 #include "FS.h"
 #include "SD_MMC.h"
 #include <WebServer.h>
+#include "secrets.h"   // copy secrets.h.example -> secrets.h and fill in your Wi-Fi
 
 //-------------------------
 // กำหนดขา ESP32-CAM AI-Thinker
@@ -25,8 +26,8 @@
 #define PCLK_GPIO_NUM     22
 
 // Wi-Fi
-const char* ssid     = "Room74-2.4G";
-const char* password = "Adam@1989";
+const char* ssid     = WIFI_SSID;      // defined in secrets.h (not committed)
+const char* password = WIFI_PASSWORD;  // defined in secrets.h (not committed)
 
 WebServer server(80);
 

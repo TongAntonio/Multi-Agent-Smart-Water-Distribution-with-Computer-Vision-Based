@@ -1,0 +1,17 @@
+# Copy to config/agent.yaml and edit. BCM pin numbers. Anything omitted falls back to agent/config.py defaults.
+agent_id: 1
+neighbors: [2, 3]
+simulate_hardware: false
+hardware:
+  pins: {us_trig: 23, us_echo: 24, ir: 17, pump_relay: 27, dht: D4}
+  flow_ml_per_s: 50.0          # calibrate: run the pump 10 s into a measuring jug
+  tank: {empty_distance_cm: 40.0, full_distance_cm: 5.0, capacity_ml: 20000}
+cv:
+  model: models/container_ssd.tflite     # MobileNet-SSD (TFLite) - not included in the repo
+  labels: models/labels.txt              # one label per line, order = class index
+  valid_label: "The cup is able to supply water"
+  calibration: models/volume_calibration.json   # created by tools/calibrate_volume.py
+link:
+  type: mqtt                              # mqtt | lora | nbiot
+  mqtt: {host: 192.168.1.10, port: 1883, prefix: water}
+  lora: {freq_hz: 433175000, sf: 9, bw_hz: 125000}   # SX1278 is 137-525 MHz only (not AS923)

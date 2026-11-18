@@ -1,0 +1,12 @@
+# Workstation: forecaster + PPO training + tests
+numpy
+pandas
+pyyaml
+gymnasium>=0.29
+stable-baselines3>=2.3
+torch
+tensorflow>=2.15
+paho-mqtt>=1.6
+pyserial
+pytest
+amqtt                   # optional: MQTT integration test

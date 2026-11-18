@@ -3,6 +3,7 @@
 #include "FS.h"
 #include "SD_MMC.h"
 #include <WebServer.h>
+#include "secrets.h"   // copy secrets.h.example -> secrets.h and fill in your Wi-Fi
 
 //-------------------------
 // กำหนดขา ESP32-CAM AI-Thinker
@@ -27,8 +28,8 @@
 //-------------------------
 // ข้อมูล Wi-Fi
 //-------------------------
-const char* ssid     = "Room74-2.4G";
-const char* password = "Adam@1989";
+const char* ssid     = WIFI_SSID;      // defined in secrets.h (not committed)
+const char* password = WIFI_PASSWORD;  // defined in secrets.h (not committed)
 
 // ตั้งเวลา timeout รอบการเชื่อมต่อ (มิลลิวินาที)
 const unsigned long WIFI_TIMEOUT_MS = 10000;
@@ -73,11 +74,11 @@ camera_config_t camera_config = {
 //-------------------------
 void handleCapture() {
   camera_fb_t * fb = esp_camera_fb_get();
-  Serial.println(fb->width); // ถ้า fb เป็น NULL จะ crash ทันที
   if (!fb) {
     server.send(500, "text/plain", "Capture failed");
     return;
   }
+  Serial.println(fb->width);
 
   // ส่ง HTTP headers ก่อน แล้วโฟลว์บัฟเฟอร์ภาพ
   server.sendHeader("Content-Type", "image/jpeg");

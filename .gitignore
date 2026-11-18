@@ -1,0 +1,17 @@
+# secrets
+**/secrets.h
+config/agent.yaml
+.env
+# python
+__pycache__/
+*.pyc
+.pytest_cache/
+# runtime
+logs/
+# macOS
+.DS_Store
+# large local training artefacts
+models/ppo_sb3.zip
+# the demo forecaster trained on SYNTHETIC data is worse than the EMA fallback -> do not ship/deploy it; train on real logs
+models/forecaster.tflite
+models/forecaster_stats.json

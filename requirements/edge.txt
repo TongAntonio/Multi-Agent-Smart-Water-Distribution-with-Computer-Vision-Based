@@ -1,0 +1,11 @@
+# Raspberry Pi 4 / Jetson Nano (Ubuntu 20.04+ / Raspberry Pi OS Bullseye+; Buster's Python 3.7 is too old)
+numpy
+pyyaml
+paho-mqtt>=1.6
+opencv-python-headless
+tflite-runtime          # or ai-edge-litert
+pyserial                # SIM7000 (NB-IoT)
+spidev                  # SX1278 (LoRa)
+RPi.GPIO                # on Jetson use: Jetson.GPIO
+adafruit-circuitpython-dht
+# picamera2 comes from apt on Raspberry Pi OS: sudo apt install python3-picamera2

@@ -1,0 +1,2 @@
+The cup is able to supply water
+The cup is not able to supply water
