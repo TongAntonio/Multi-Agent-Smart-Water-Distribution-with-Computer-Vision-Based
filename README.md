@@ -16,9 +16,10 @@ coordinates with neighbours over MQTT / LoRa / NB-IoT without a cloud service.
 | `train/` | `train_ppo.py` (Stable-Baselines3 PPO -> NumPy export), `train_forecaster.py` (LSTM -> TFLite) |
 | `gateway/` | `lora_gateway.py` (SX1278 -> MQTT), `firebase_bridge.py` (MQTT -> Firebase for Admin-Web) |
 | `dashboard/node-red-flow.json` | Node-RED dashboard flow (Fig. 9) |
+| `agent/timing.py`, `tools/bench_stages.py` | Per-stage timing of the control loop and a benchmark that runs on a PC or on the Pi (see "Timing the stages") |
 | `tools/calibrate_volume.py` | Bounding-box volume calibration with 200/500/600 ml reference containers |
 | `config/agent.example.yaml` | Per-dispenser configuration (pins, link, model paths) |
-| `tests/` | 56 tests (`python -m pytest`): 54 pass and 1 is an expected failure that pins a known gap; modules skip when `amqtt`, TensorFlow or `mosquitto` is missing |
+| `tests/` | 72 tests (`python -m pytest`): 70 pass here, 1 is an expected failure that pins a known gap and 1 skips (TensorFlow); modules skip when `amqtt`, TensorFlow or `mosquitto` is missing |
 | `IOT/` | ESP32-CAM sketches used **only to collect the training images** (Edge Impulse). Not the dispenser firmware. |
 | `computer-vision-...-export/` | Edge Impulse dataset export (134 images) |
 | `results/`, `models/ablation/` | Output of the v2 paper simulation experiments and the PPO actors it evaluates (see "Paper v2 simulation experiments"); `results/sil/` holds the software-in-the-loop runs |
@@ -186,11 +187,37 @@ Reading it:
   origin returns the request to its own queue (log: "request returned to local queue") while the user is already at the neighbour, which treats
   the arrival as a new request. Service continues, but the origin keeps a request nobody is waiting for until it times out.
 
+## Timing the stages
+
+`agent/timing.py` times every stage of the control loop (sensor read, camera frame, detector, forecaster, policy, link send/poll and
+the whole tick) without editing the agent. `tools/bench_stages.py` drives an agent through scripted user cycles (arrival, decision,
+a tank too low so the forward path runs) and writes a JSON file with the timings and a description of the machine. The same command
+runs on a PC and on the Raspberry Pi; **a laptop number is not a Pi number**, so never put them in one table without naming the machine.
+
+```bash
+python -m tools.bench_stages                                   # simulated hardware, in-memory link, stub detector
+python -m tools.bench_stages --detector fake                   # real resize/colour/normalise + output decoding, instant fake model
+python -m tools.bench_stages --detector tflite --model models/container_ssd.tflite --labels models/labels.txt --images frames/
+python -m tools.bench_stages --link mqtt --mqtt-host <broker> --tcp-nodelay   # through a running Mosquitto, adds the link round trip
+python -m tools.bench_stages --hardware real --config config/agent.yaml       # on the Pi: real sensor reads, the pump never runs
+python -m pytest -m timing                                     # wall-clock budget checks (TIMING_BUDGET_SCALE=10 on a Pi)
+```
+
+Times are inclusive (`agent.step` contains `hw.read`, `policy.act`, ...) and in milliseconds; results go to `results/timing/`.
+`--detector tflite` is the only mode that times real model inference and needs a model (none is included). The sensor read
+(`--hardware real`) matters on the Pi: the DHT22 read is slow. The test suite checks the stopwatch with an injected clock; the
+`timing` tests only compare wall-clock times with loose budgets and are not performance claims.
+
+**Finding (one Linux machine, Mosquitto 2.0.18, paho-mqtt 2.2.0, loopback, 100-200 round trips each):** a Forward/ACK round trip
+through the broker took about 90 ms with default settings and about 0.9 ms with `--tcp-nodelay` on the clients *and*
+`set_tcp_nodelay true` in `mosquitto.conf` (only the clients: about 45 ms; only the broker: still about 90 ms). The agent code does not set
+TCP_NODELAY today. This was not measured on Wi-Fi or on a Pi.
+
 ## Quick start
 
 ```bash
 pip install -r requirements/train.txt            # workstation
-python -m pytest                                 # 56 tests collected
+python -m pytest                                 # 72 tests collected
 python -m train.train_ppo --timesteps 300000     # -> models/policy.npz (PyTorch process)
 python -m train.train_forecaster --csv usage.csv # -> models/forecaster.tflite (TensorFlow process); --synthetic = smoke test only
 python -m sim.run_experiment --seeds 30          # simulation table
