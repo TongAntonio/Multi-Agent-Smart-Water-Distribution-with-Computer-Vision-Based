@@ -1,0 +1,61 @@
+{
+ "link": "mqtt",
+ "scenario": "broker_whole",
+ "seed": 4,
+ "k": 5.0,
+ "events": [],
+ "facts": {
+  "bridge_alive_after_start": false,
+  "gateway_alive_after_start": null,
+  "bridge_alive_end": false,
+  "gateway_alive_end": null
+ },
+ "reconnect_delay_sim_s": null,
+ "phases": {
+  "before": {
+   "users": 37,
+   "served": 24,
+   "served_via_forward": 0,
+   "mean_latency_s": 0.51,
+   "dashboard_puts_per_min": 0.0,
+   "high_tank": {
+    "users": 19,
+    "served": 19
+   },
+   "low_tank": {
+    "users": 18,
+    "served": 5
+   }
+  },
+  "during": {
+   "users": 25,
+   "served": 14,
+   "served_via_forward": 0,
+   "mean_latency_s": 0.07,
+   "dashboard_puts_per_min": 0.0,
+   "high_tank": {
+    "users": 14,
+    "served": 14
+   },
+   "low_tank": {
+    "users": 11,
+    "served": 0
+   }
+  },
+  "after": {
+   "users": 54,
+   "served": 24,
+   "served_via_forward": 0,
+   "mean_latency_s": 0.07,
+   "dashboard_puts_per_min": 0.0,
+   "high_tank": {
+    "users": 24,
+    "served": 24
+   },
+   "low_tank": {
+    "users": 30,
+    "served": 0
+   }
+  }
+ }
+}

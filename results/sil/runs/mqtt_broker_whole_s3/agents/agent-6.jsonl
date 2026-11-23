@@ -1,0 +1,2 @@
+{"request_id": 100663297, "agent_id": 6, "origin": 6, "volume_ml": 500, "outcome": "served", "t_request": 48.564936580000335, "t_dispense": 48.564936580000335, "latency_s": 0.0, "hops": 0, "dispensed_ml": 500, "cv_score": 0.95}
+{"request_id": 100663298, "agent_id": 6, "origin": 6, "volume_ml": 500, "outcome": "timeout", "t_request": 166.31247538000025, "t_dispense": 286.33976663499993, "latency_s": 120.027, "hops": 0}

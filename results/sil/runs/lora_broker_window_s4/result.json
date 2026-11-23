@@ -1,0 +1,85 @@
+{
+ "link": "lora",
+ "scenario": "broker_window",
+ "seed": 4,
+ "k": 5.0,
+ "events": [
+  [
+   0.0,
+   "broker_up"
+  ],
+  [
+   90.10114405999957,
+   "broker_down"
+  ],
+  [
+   180.01739324500022,
+   "broker_up2"
+  ]
+ ],
+ "facts": {
+  "bridge_alive_after_start": true,
+  "gateway_alive_after_start": true,
+  "bridge_alive_end": true,
+  "gateway_alive_end": true
+ },
+ "reconnect_delay_sim_s": [
+  3.1,
+  3.1,
+  3.1,
+  3.1,
+  9.0,
+  9.0,
+  9.0,
+  9.0,
+  9.0,
+  9.1
+ ],
+ "phases": {
+  "before": {
+   "users": 37,
+   "served": 37,
+   "served_via_forward": 13,
+   "mean_latency_s": 2.21,
+   "dashboard_puts_per_min": 48.7,
+   "high_tank": {
+    "users": 19,
+    "served": 19
+   },
+   "low_tank": {
+    "users": 18,
+    "served": 18
+   }
+  },
+  "during": {
+   "users": 25,
+   "served": 25,
+   "served_via_forward": 11,
+   "mean_latency_s": 2.46,
+   "dashboard_puts_per_min": 0.0,
+   "high_tank": {
+    "users": 14,
+    "served": 14
+   },
+   "low_tank": {
+    "users": 11,
+    "served": 11
+   }
+  },
+  "after": {
+   "users": 54,
+   "served": 54,
+   "served_via_forward": 30,
+   "mean_latency_s": 3.06,
+   "dashboard_puts_per_min": 26.0,
+   "high_tank": {
+    "users": 24,
+    "served": 24
+   },
+   "low_tank": {
+    "users": 30,
+    "served": 30
+   }
+  }
+ }
+}

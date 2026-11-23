@@ -1,0 +1,20 @@
+{
+ "note": "real time, one run per outage length, paho-mqtt default reconnect back-off (1 s doubling to 120 s)",
+ "runs": [
+  {
+   "outage_s": 10,
+   "reconnect_s": 4.5,
+   "first_state_delivered_s": 4.6
+  },
+  {
+   "outage_s": 30,
+   "reconnect_s": 0.5,
+   "first_state_delivered_s": 0.6
+  },
+  {
+   "outage_s": 90,
+   "reconnect_s": 36.5,
+   "first_state_delivered_s": 36.6
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+{"request_id": 100663297, "agent_id": 6, "origin": 6, "volume_ml": 500, "outcome": "served", "t_request": 48.5386010000002, "t_dispense": 48.5386010000002, "latency_s": 0.0, "hops": 0, "dispensed_ml": 500, "cv_score": 0.95}
+{"request_id": 100663298, "agent_id": 6, "origin": 6, "volume_ml": 500, "outcome": "forwarded", "t_request": 166.2690213799999, "t_dispense": 166.57463064000012, "latency_s": 0.306, "hops": 0, "to": 5}
+{"request_id": 100663299, "agent_id": 6, "origin": 6, "volume_ml": 500, "outcome": "forwarded", "t_request": 194.1073571100003, "t_dispense": 194.41143265999983, "latency_s": 0.304, "hops": 0, "to": 2}
+{"request_id": 100663300, "agent_id": 6, "origin": 6, "volume_ml": 500, "outcome": "forwarded", "t_request": 198.64094121999983, "t_dispense": 198.9442141149999, "latency_s": 0.303, "hops": 0, "to": 5}
+{"request_id": 100663301, "agent_id": 6, "origin": 6, "volume_ml": 500, "outcome": "forwarded", "t_request": 247.91366045000018, "t_dispense": 248.2190640350001, "latency_s": 0.305, "hops": 0, "to": 1}

@@ -1,0 +1,27 @@
+Traceback (most recent call last):
+  File "./sim/sil/lora_gateway_launcher.py", line 30, in <module>
+    main()
+    ~~~~^^
+  File "./sim/sil/lora_gateway_launcher.py", line 26, in main
+    gw.main()
+    ~~~~~~~^^
+  File "./gateway/lora_gateway.py", line 27, in main
+    c.connect(a.mqtt_host, a.mqtt_port, 30); c.loop_start()
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/paho/mqtt/client.py", line 1425, in connect
+    return self.reconnect()
+           ~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/site-packages/paho/mqtt/client.py", line 1588, in reconnect
+    self._sock = self._create_socket()
+                 ~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/site-packages/paho/mqtt/client.py", line 4564, in _create_socket
+    sock = self._create_socket_connection()
+  File "/usr/local/lib/python3.13/site-packages/paho/mqtt/client.py", line 4595, in _create_socket_connection
+    return socket.create_connection(addr, timeout=self._connect_timeout, source_address=source)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/socket.py", line 868, in create_connection
+    raise exceptions[0]
+  File "/usr/local/lib/python3.13/socket.py", line 853, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [Errno 111] Connection refused

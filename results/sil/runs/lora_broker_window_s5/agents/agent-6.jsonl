@@ -1,0 +1,10 @@
+{"request_id": 100663297, "agent_id": 6, "origin": 6, "volume_ml": 500, "outcome": "served", "t_request": 16.416348290000542, "t_dispense": 16.416348290000542, "latency_s": 0.0, "hops": 0, "dispensed_ml": 500, "cv_score": 0.95}
+{"request_id": 100663298, "agent_id": 6, "origin": 6, "volume_ml": 500, "outcome": "forwarded", "t_request": 25.94851960500023, "t_dispense": 26.10177363000048, "latency_s": 0.153, "hops": 0, "to": 2}
+{"request_id": 100663299, "agent_id": 6, "origin": 6, "volume_ml": 500, "outcome": "forwarded", "t_request": 42.30933404000098, "t_dispense": 42.46360483000103, "latency_s": 0.154, "hops": 0, "to": 3}
+{"request_id": 100663300, "agent_id": 6, "origin": 6, "volume_ml": 500, "outcome": "forwarded", "t_request": 72.88048432000096, "t_dispense": 73.03388427500067, "latency_s": 0.153, "hops": 0, "to": 5}
+{"request_id": 100663301, "agent_id": 6, "origin": 6, "volume_ml": 500, "outcome": "forwarded", "t_request": 74.24344841000106, "t_dispense": 74.39703125500046, "latency_s": 0.154, "hops": 0, "to": 2}
+{"request_id": 100663302, "agent_id": 6, "origin": 6, "volume_ml": 500, "outcome": "forwarded", "t_request": 166.67459396000027, "t_dispense": 166.82802043500033, "latency_s": 0.153, "hops": 0, "to": 4}
+{"request_id": 100663303, "agent_id": 6, "origin": 6, "volume_ml": 500, "outcome": "forwarded", "t_request": 167.7337595600011, "t_dispense": 167.8871299800005, "latency_s": 0.153, "hops": 0, "to": 2}
+{"request_id": 100663304, "agent_id": 6, "origin": 6, "volume_ml": 500, "outcome": "forwarded", "t_request": 201.79367266500094, "t_dispense": 201.94768663000104, "latency_s": 0.154, "hops": 0, "to": 1}
+{"request_id": 100663305, "agent_id": 6, "origin": 6, "volume_ml": 500, "outcome": "forwarded", "t_request": 248.48192419500037, "t_dispense": 248.63487892500075, "latency_s": 0.153, "hops": 0, "to": 4}
+{"request_id": 100663306, "agent_id": 6, "origin": 6, "volume_ml": 500, "outcome": "forwarded", "t_request": 249.54838866000046, "t_dispense": 252.73689193500104, "latency_s": 3.189, "hops": 0, "to": 3}

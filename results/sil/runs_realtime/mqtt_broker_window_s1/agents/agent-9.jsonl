@@ -1,0 +1,10 @@
+{"request_id": 150994945, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "served", "t_request": 54.33981014599999, "t_dispense": 54.33981014599999, "latency_s": 0.0, "hops": 0, "dispensed_ml": 500, "cv_score": 0.95}
+{"request_id": 150994946, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "forwarded", "t_request": 88.08062738099989, "t_dispense": 88.14142784199998, "latency_s": 0.061, "hops": 0, "to": 1}
+{"request_id": 150994947, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "forwarded", "t_request": 129.47538753799995, "t_dispense": 226.93079306000004, "latency_s": 97.455, "hops": 0, "to": 3}
+{"request_id": 150994948, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "forwarded", "t_request": 227.8707416599998, "t_dispense": 227.93241390700018, "latency_s": 0.062, "hops": 0, "to": 5}
+{"request_id": 150994949, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "forwarded", "t_request": 228.8729041879999, "t_dispense": 228.9340477180001, "latency_s": 0.061, "hops": 0, "to": 4}
+{"request_id": 150994950, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "forwarded", "t_request": 229.87566789200014, "t_dispense": 229.9388035710001, "latency_s": 0.063, "hops": 0, "to": 5}
+{"request_id": 150994951, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "forwarded", "t_request": 230.87801666100017, "t_dispense": 230.93920268399984, "latency_s": 0.061, "hops": 0, "to": 2}
+{"request_id": 150994952, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "forwarded", "t_request": 234.69698776300015, "t_dispense": 234.757954295, "latency_s": 0.061, "hops": 0, "to": 4}
+{"request_id": 150994953, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "forwarded", "t_request": 255.80131721300017, "t_dispense": 255.86214625800017, "latency_s": 0.061, "hops": 0, "to": 1}
+{"request_id": 150994954, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "forwarded", "t_request": 261.3482640999998, "t_dispense": 261.409522619, "latency_s": 0.061, "hops": 0, "to": 4}

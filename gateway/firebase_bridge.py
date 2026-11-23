@@ -22,7 +22,7 @@ def fb_put(path: str, obj) -> None:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--mqtt-host", default="localhost"); ap.add_argument("--prefix", default="water")
+    ap.add_argument("--mqtt-host", default="localhost"); ap.add_argument("--mqtt-port", type=int, default=1883); ap.add_argument("--prefix", default="water")
     ap.add_argument("--primary-agent", type=int, default=1)
     a = ap.parse_args()
 
@@ -41,7 +41,7 @@ def main():
         c = mqtt.Client(client_id="firebase-bridge")
     c.on_connect = lambda cl, u, f, rc, *x: cl.subscribe(f"{a.prefix}/agents/+/state")
     c.on_message = on_message
-    c.connect(a.mqtt_host, 1883, 30)
+    c.connect(a.mqtt_host, a.mqtt_port, 30)
     c.loop_forever()
 
 

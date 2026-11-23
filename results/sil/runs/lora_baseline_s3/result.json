@@ -1,0 +1,66 @@
+{
+ "link": "lora",
+ "scenario": "baseline",
+ "seed": 3,
+ "k": 5.0,
+ "events": [
+  [
+   0.0,
+   "broker_up"
+  ]
+ ],
+ "facts": {
+  "bridge_alive_after_start": true,
+  "gateway_alive_after_start": true,
+  "bridge_alive_end": true,
+  "gateway_alive_end": true
+ },
+ "reconnect_delay_sim_s": null,
+ "phases": {
+  "before": {
+   "users": 40,
+   "served": 40,
+   "served_via_forward": 13,
+   "mean_latency_s": 2.01,
+   "dashboard_puts_per_min": 48.0,
+   "high_tank": {
+    "users": 23,
+    "served": 23
+   },
+   "low_tank": {
+    "users": 17,
+    "served": 17
+   }
+  },
+  "during": {
+   "users": 22,
+   "served": 22,
+   "served_via_forward": 10,
+   "mean_latency_s": 2.43,
+   "dashboard_puts_per_min": 45.3,
+   "high_tank": {
+    "users": 11,
+    "served": 11
+   },
+   "low_tank": {
+    "users": 11,
+    "served": 11
+   }
+  },
+  "after": {
+   "users": 25,
+   "served": 25,
+   "served_via_forward": 12,
+   "mean_latency_s": 2.53,
+   "dashboard_puts_per_min": 49.5,
+   "high_tank": {
+    "users": 13,
+    "served": 13
+   },
+   "low_tank": {
+    "users": 12,
+    "served": 12
+   }
+  }
+ }
+}
