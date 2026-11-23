@@ -1,0 +1,49 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata in this file. Read the section 'Status and known gaps' in the README before citing any number."
+type: software
+title: "Multi-Agent Smart Water Distribution with Computer Vision-Based Container Detection and AI-Driven Behavior Forecasting for Disaster Relief in Smart Cities: code and simulation"
+abstract: >-
+  Code for an edge-based multi-agent water dispenser system for disaster relief.
+  Each dispenser is an autonomous agent that checks the container with a camera model,
+  forecasts short-term demand, chooses between dispensing, waiting and forwarding the
+  request to a neighbour with a PPO-trained policy, and communicates over MQTT,
+  point-to-point LoRa or NB-IoT without a cloud service. Includes the simulator,
+  training scripts, gateway scripts, dashboards and a software-in-the-loop deployment.
+  The agent code has been tested against simulated peripherals only; the trained
+  detector, the trial hardware logs and the trial broker configuration are not included.
+authors:
+  - family-names: Chumyen
+    given-names: Wuttachai
+    affiliation: Independent researcher
+    orcid: "https://orcid.org/0009-0009-7605-8739"
+repository-code: "https://github.com/TongAntonio/Multi-Agent-Smart-Water-Distribution-with-Computer-Vision-Based"
+keywords:
+  - multi-agent systems
+  - agentic AI
+  - computer vision
+  - behavior forecasting
+  - IoT water distribution
+  - disaster relief
+  - smart cities
+  - multi-agent reinforcement learning
+  - edge computing
+  - MQTT
+references:
+  - type: conference-paper
+    title: "Multi-Agent Smart Water Distribution with Computer Vision-Based Container Detection and AI-Driven Behavior Forecasting for Disaster Relief in Smart Cities"
+    authors:
+      - family-names: Chumyen
+        given-names: Wuttachai
+        orcid: "https://orcid.org/0009-0009-7605-8739"
+    collection-title: "2025 IEEE International Conference on Agentic AI (ICA)"
+    conference:
+      name: "2025 IEEE International Conference on Agentic AI (ICA)"
+      city: Wuhan
+      country: CN
+      date-start: "2025-12-05"
+      date-end: "2025-12-07"
+    start: 7
+    end: 11
+    year: 2025
+    month: 12
+    doi: "10.1109/ICA67499.2025.00011"

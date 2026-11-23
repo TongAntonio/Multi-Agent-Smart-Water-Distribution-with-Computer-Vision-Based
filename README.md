@@ -208,6 +208,18 @@ python -m agent.main --config config/agent.yaml
 `models/policy.npz` is a demo policy trained **in the simulator**; retrain after changing `sim/env.py` or `agent/spec.py`
 (the observation layout must match between training and deployment).
 
+## How to cite
+
+`CITATION.cff` (GitHub's "Cite this repository" button) and `.zenodo.json` hold the citation metadata. Cite the paper for the
+system and this repository for the code and simulation results:
+
+> W. Chumyen, "Multi-Agent Smart Water Distribution with Computer Vision-Based Container Detection and AI-Driven Behavior
+> Forecasting for Disaster Relief in Smart Cities," 2025 IEEE International Conference on Agentic AI (ICA), Wuhan, China,
+> 2025, pp. 7-11, doi: 10.1109/ICA67499.2025.00011.
+
+A versioned archive of this repository is deposited on Zenodo for each release; the DOI will be added here and to `CITATION.cff`
+once the first release has been archived.
+
 ## Security notes
 
 * `IOT/*.ino` no longer contain Wi-Fi credentials: copy `secrets.h.example` to `secrets.h` (git-ignored) in each sketch folder.
