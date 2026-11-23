@@ -1,0 +1,34 @@
+{
+  "title": "Multi-Agent Smart Water Distribution with Computer Vision-Based Container Detection and AI-Driven Behavior Forecasting for Disaster Relief in Smart Cities: code and simulation",
+  "upload_type": "software",
+  "description": "<p>Code for an edge-based multi-agent water dispenser system for disaster relief. Each dispenser is an autonomous agent that checks the container with a camera model, forecasts short-term demand, chooses between dispensing, waiting and forwarding the request to a neighbour with a PPO-trained policy, and talks to its neighbours over MQTT, point-to-point LoRa or NB-IoT without a cloud service.</p><p><strong>What is included:</strong> the edge agent, the Gymnasium multi-agent simulator and baselines, the PPO and LSTM training scripts, the LoRa gateway and Firebase bridge scripts, the Node-RED dashboard flow, the Angular admin dashboard, the Edge Impulse image export used for the container detector, the simulation experiments and ablation policies for the second version of the paper, and a software-in-the-loop deployment (real agents, a real Mosquitto broker, the real gateway scripts, simulated sensors and users) with its raw results.</p><p><strong>What is not included or not claimed:</strong> the agent code has been tested against simulated peripherals only and has not been run on a real Raspberry Pi or Jetson. The trained container-detection model, the hardware logs from the laboratory and campus trials, and the Mosquitto and Node-RED configuration used in those trials are not part of this release. The software-in-the-loop results are a re-created reference deployment; they do not show where the broker ran in the trials and are not hardware measurements. The LoRa link in the code is raw point-to-point (SX1278), not LoRaWAN. See the section \"Status and known gaps\" in the README before citing any number.</p>",
+  "creators": [
+    {
+      "name": "Chumyen, Wuttachai",
+      "affiliation": "Independent researcher",
+      "orcid": "0009-0009-7605-8739"
+    }
+  ],
+  "keywords": [
+    "multi-agent systems",
+    "agentic AI",
+    "computer vision",
+    "behavior forecasting",
+    "IoT water distribution",
+    "disaster relief",
+    "smart cities",
+    "multi-agent reinforcement learning",
+    "edge computing",
+    "MQTT"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.1109/ICA67499.2025.00011",
+      "relation": "isSupplementTo",
+      "resource_type": "publication-conferencepaper",
+      "scheme": "doi"
+    }
+  ],
+  "access_right": "open",
+  "language": "eng"
+}
