@@ -16,7 +16,9 @@ authors:
     given-names: Wuttachai
     affiliation: Independent researcher
     orcid: "https://orcid.org/0009-0009-7605-8739"
-license: MIT
+license:
+  - MIT
+  - CC-BY-4.0
 repository-code: "https://github.com/TongAntonio/Multi-Agent-Smart-Water-Distribution-with-Computer-Vision-Based"
 keywords:
   - multi-agent systems

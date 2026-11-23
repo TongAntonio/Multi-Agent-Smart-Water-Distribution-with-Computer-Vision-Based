@@ -210,10 +210,11 @@ python -m agent.main --config config/agent.yaml
 
 ## License
 
-The code written for this project is released under the [MIT License](LICENSE). Third-party files keep their own licenses: the
+The code written for this project is released under the [MIT License](LICENSE); the image dataset under CC BY 4.0 (below). Third-party files keep their own licenses: the
 Angular admin dashboard in `Admin-Web/` bundles the SB Admin 2 template and the Bootstrap, jQuery, Flot, Morris.js, DataTables,
 Font Awesome and related libraries under `Admin-Web/Angular-WebApp/dist/assets/` (headers and license files in those folders apply).
-The Edge Impulse export contains the images collected for this project.
+The dataset folder `computer-vision-based-container-detection-for-disaster-relief-in-smart-cities-export/` (134 images and labels)
+is licensed separately under [CC BY 4.0](computer-vision-based-container-detection-for-disaster-relief-in-smart-cities-export/LICENSE.md).
 
 ## How to cite
 
