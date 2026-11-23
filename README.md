@@ -12,15 +12,16 @@ coordinates with neighbours over MQTT / LoRa / NB-IoT without a cloud service.
 | Path | What it is |
 |---|---|
 | `agent/` | Edge agent: `main.py` (control loop), `hardware.py` (Table I sensors + pump), `perception.py` (camera, SSD detector, volume calibration), `forecast.py` (LSTM/TFLite + EMA fallback), `policy.py` (NumPy PPO actor), `comms.py` (MQTT, SX1278 LoRa, SIM7000 NB-IoT), `spec.py` (state/action definition), `metrics.py` |
-| `sim/` | Gymnasium multi-agent simulator, baselines (heuristic, centralised), experiment runner |
+| `sim/` | Gymnasium multi-agent simulator, baselines (heuristic, centralised), experiment runner; `connectivity.py` (broker-outage environment and ablation variants), `train_variants.py`, `run_paper_experiments.py` (v2 paper experiments) |
 | `train/` | `train_ppo.py` (Stable-Baselines3 PPO -> NumPy export), `train_forecaster.py` (LSTM -> TFLite) |
 | `gateway/` | `lora_gateway.py` (SX1278 -> MQTT), `firebase_bridge.py` (MQTT -> Firebase for Admin-Web) |
 | `dashboard/node-red-flow.json` | Node-RED dashboard flow (Fig. 9) |
 | `tools/calibrate_volume.py` | Bounding-box volume calibration with 200/500/600 ml reference containers |
 | `config/agent.example.yaml` | Per-dispenser configuration (pins, link, model paths) |
-| `tests/` | 48 tests (`python -m pytest`) |
+| `tests/` | 53 tests (`python -m pytest`); two modules skip when `amqtt` or TensorFlow is missing |
 | `IOT/` | ESP32-CAM sketches used **only to collect the training images** (Edge Impulse). Not the dispenser firmware. |
 | `computer-vision-...-export/` | Edge Impulse dataset export (134 images) |
+| `results/`, `models/ablation/` | Output of the v2 paper simulation experiments and the PPO actors it evaluates (see "Paper v2 simulation experiments") |
 | `Admin-Web/` | Angular admin dashboard (reads Firebase) |
 
 ## Paper specification -> code
@@ -60,6 +61,15 @@ coordinates with neighbours over MQTT / LoRa / NB-IoT without a cloud service.
 7. **`pump relay` is required but not listed in Table I** (something must implement `dispense`). Calibrate `flow_ml_per_s`.
 8. **Python >= 3.8.** Table II lists Raspbian Buster, whose stock Python 3.7 is too old; use Ubuntu 20.04 or Raspberry Pi OS Bullseye+.
 9. TensorFlow and PyTorch crashed when loaded in the same process in our environment; the training scripts are separate processes, and the PPO test runs in a subprocess.
+10. **Where the MQTT broker runs is not recorded in this repository.** What the code and configuration say: `agent.example.yaml`
+   points the agents at a broker on a LAN address (`192.168.1.10:1883`); `gateway/lora_gateway.py` and `gateway/firebase_bridge.py`
+   default to `--mqtt-host localhost`; the Node-RED flow's Mosquitto node is `localhost:1883`. No Mosquitto configuration file and
+   no hardware logs are included, so the repository does not show where the broker ran in the laboratory or field trials.
+   With the broker unreachable (nothing listening on the port), an MQTT agent still dispenses locally; `tests/test_broker_unreachable.py`
+   runs the real `MqttLink` and `Agent` against a closed port and checks this. It does not tell where the broker ran in any trial.
+   With NB-IoT the behaviour is different: a modem error on `AT+SMPUB` makes `NbIotLink.send()` raise inside `Agent.step()`, before the
+   dispense decision, and `Agent.run()` does not catch it, so the agent loop ends. We reproduced this with the scripted modem in
+   `tests/helpers.py`; it is not fixed yet.
 
 ### Simulation results (20 agents, 100 requests, 30 seeds, mean ± std of success rate)
 
@@ -86,11 +96,32 @@ The paper's hardware results (94.5 % success, 1.3 s latency, 92 % / 1.5 s / 4.7 
 18 % / 22 % improvements) come from physical trials and cannot be reproduced from this repository. Use `agent/metrics.py` on
 `logs/agent-*.jsonl` from your own deployment to compute success rate, latency and fairness.
 
+### Paper v2 simulation experiments
+
+Everything below is **simulation**, not a measurement of the physical dispensers. It uses the same abstract model as above
+(noisy-oracle forecast, Bernoulli CV flag, simulated seconds, the centralised baseline's assumed 3 s timeout).
+
+```bash
+pip install -r requirements/train.txt
+# 4 PPO variants x 5 training seeds (300k steps each); one process per run, see the docstring of sim/train_variants.py
+python -m sim.train_variants --variant full --seeds 0 1 2 3 4        # also: no_forecast, no_volume, no_fairness
+python -m sim.run_paper_experiments --eval-seeds 30 --out results/
+python -m pytest tests/test_connectivity.py
+```
+
+* Scenarios: packet loss 0 / 20 / 30 / 40 %; the broker unreachable for 100-200 s (covers the demand surge); unreachable for the whole run.
+  `sim/connectivity.py::OutageEnv` forces the drop probability to 1.0 inside the outage window.
+* Ablations (no forecast, no volume estimate, no fairness term) are retrained PPO policies; the trained actors are in `models/ablation/`.
+* Outputs: `results/sim_episodes.csv` (one row per episode), `sim_summary.csv`, `sim_paired_stats.csv` (paired differences with 95 % intervals),
+  `sim_tables.tex`, `meta.json` (software versions, parameters).
+* Reading the results: the learned policy matches the rule-based heuristic and no ablated component has an effect larger than the
+  per-episode spread; the centralised baseline's loss under packet loss follows from its assumed timeout.
+
 ## Quick start
 
 ```bash
 pip install -r requirements/train.txt            # workstation
-python -m pytest                                 # 48 tests
+python -m pytest                                 # 53 tests collected
 python -m train.train_ppo --timesteps 300000     # -> models/policy.npz (PyTorch process)
 python -m train.train_forecaster --csv usage.csv # -> models/forecaster.tflite (TensorFlow process); --synthetic = smoke test only
 python -m sim.run_experiment --seeds 30          # simulation table
