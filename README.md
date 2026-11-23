@@ -224,8 +224,11 @@ once the first release has been archived.
 
 * `IOT/*.ino` no longer contain Wi-Fi credentials: copy `secrets.h.example` to `secrets.h` (git-ignored) in each sketch folder.
   Earlier commits still contain the old SSID/password in the public history - **change that Wi-Fi password**.
-* `Admin-Web/.../environment.ts` contains a Firebase web API key. These keys are not secrets by themselves, but make sure the
-  Realtime Database security rules do not allow public read/write.
+* `Admin-Web/Angular-WebApp/src/environments/environment.ts` now holds placeholders (`YOUR_...`) instead of a real Firebase
+  config; fill in your own project's values to run the dashboard. The prebuilt `dist/main.bundle.js` was edited the same way,
+  so it will not connect to anything until you rebuild it (`ng build`) with real values. Earlier commits still contain the
+  old Firebase web config in the public history: a web API key is not a secret by itself, but the old project's Realtime
+  Database rules must not allow public read/write, and the key should be restricted (or rotated) in the Google Cloud console.
 
 ## Suggested wording for the paper's Appendix A
 
