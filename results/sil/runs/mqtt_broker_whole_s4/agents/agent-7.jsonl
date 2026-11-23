@@ -1,0 +1,2 @@
+{"request_id": 117440513, "agent_id": 7, "origin": 7, "volume_ml": 500, "outcome": "served", "t_request": 77.44002987499982, "t_dispense": 77.44002987499982, "latency_s": 0.0, "hops": 0, "dispensed_ml": 500, "cv_score": 0.95}
+{"request_id": 117440514, "agent_id": 7, "origin": 7, "volume_ml": 500, "outcome": "timeout", "t_request": 110.71680040999979, "t_dispense": 230.76348352499963, "latency_s": 120.047, "hops": 0}

@@ -1,0 +1,162 @@
+{
+ "git_commit": "84b88ae",
+ "python": "3.13.18",
+ "mosquitto": [
+  "mosquitto version 2.0.18"
+ ],
+ "paho_mqtt": "?",
+ "agents": 10,
+ "tank_ml": {
+  "agents_1_5": 15000.0,
+  "agents_6_10": 700.0
+ },
+ "container_ml": 500,
+ "mean_gap_s": 25.0,
+ "time_scale_k": 5.0,
+ "arrivals_until_s": 270.0,
+ "duration_s": 300.0,
+ "outage_window_s": [
+  90.0,
+  180.0
+ ],
+ "runs_per_scenario": {
+  "lora_baseline": 5,
+  "lora_broker_whole": 5,
+  "lora_broker_window": 5,
+  "lora_gateway_window": 5,
+  "mqtt_baseline": 5,
+  "mqtt_bridge_window": 5,
+  "mqtt_broker_whole": 5,
+  "mqtt_broker_window": 5
+ },
+ "process_facts": {
+  "lora_broker_whole": [
+   {
+    "bridge_alive_after_start": false,
+    "gateway_alive_after_start": false,
+    "bridge_alive_end": false,
+    "gateway_alive_end": false
+   },
+   {
+    "bridge_alive_after_start": false,
+    "gateway_alive_after_start": false,
+    "bridge_alive_end": false,
+    "gateway_alive_end": false
+   },
+   {
+    "bridge_alive_after_start": false,
+    "gateway_alive_after_start": false,
+    "bridge_alive_end": false,
+    "gateway_alive_end": false
+   },
+   {
+    "bridge_alive_after_start": false,
+    "gateway_alive_after_start": false,
+    "bridge_alive_end": false,
+    "gateway_alive_end": false
+   },
+   {
+    "bridge_alive_after_start": false,
+    "gateway_alive_after_start": false,
+    "bridge_alive_end": false,
+    "gateway_alive_end": false
+   }
+  ],
+  "lora_gateway_window": [
+   {
+    "bridge_alive_after_start": true,
+    "gateway_alive_after_start": true,
+    "bridge_alive_end": true,
+    "gateway_alive_end": true
+   },
+   {
+    "bridge_alive_after_start": true,
+    "gateway_alive_after_start": true,
+    "bridge_alive_end": true,
+    "gateway_alive_end": true
+   },
+   {
+    "bridge_alive_after_start": true,
+    "gateway_alive_after_start": true,
+    "bridge_alive_end": true,
+    "gateway_alive_end": true
+   },
+   {
+    "bridge_alive_after_start": true,
+    "gateway_alive_after_start": true,
+    "bridge_alive_end": true,
+    "gateway_alive_end": true
+   },
+   {
+    "bridge_alive_after_start": true,
+    "gateway_alive_after_start": true,
+    "bridge_alive_end": true,
+    "gateway_alive_end": true
+   }
+  ],
+  "mqtt_bridge_window": [
+   {
+    "bridge_alive_after_start": true,
+    "gateway_alive_after_start": null,
+    "bridge_alive_end": true,
+    "gateway_alive_end": null
+   },
+   {
+    "bridge_alive_after_start": true,
+    "gateway_alive_after_start": null,
+    "bridge_alive_end": true,
+    "gateway_alive_end": null
+   },
+   {
+    "bridge_alive_after_start": true,
+    "gateway_alive_after_start": null,
+    "bridge_alive_end": true,
+    "gateway_alive_end": null
+   },
+   {
+    "bridge_alive_after_start": true,
+    "gateway_alive_after_start": null,
+    "bridge_alive_end": true,
+    "gateway_alive_end": null
+   },
+   {
+    "bridge_alive_after_start": true,
+    "gateway_alive_after_start": null,
+    "bridge_alive_end": true,
+    "gateway_alive_end": null
+   }
+  ],
+  "mqtt_broker_whole": [
+   {
+    "bridge_alive_after_start": false,
+    "gateway_alive_after_start": null,
+    "bridge_alive_end": false,
+    "gateway_alive_end": null
+   },
+   {
+    "bridge_alive_after_start": false,
+    "gateway_alive_after_start": null,
+    "bridge_alive_end": false,
+    "gateway_alive_end": null
+   },
+   {
+    "bridge_alive_after_start": false,
+    "gateway_alive_after_start": null,
+    "bridge_alive_end": false,
+    "gateway_alive_end": null
+   },
+   {
+    "bridge_alive_after_start": false,
+    "gateway_alive_after_start": null,
+    "bridge_alive_end": false,
+    "gateway_alive_end": null
+   },
+   {
+    "bridge_alive_after_start": false,
+    "gateway_alive_after_start": null,
+    "bridge_alive_end": false,
+    "gateway_alive_end": null
+   }
+  ]
+ }
+}

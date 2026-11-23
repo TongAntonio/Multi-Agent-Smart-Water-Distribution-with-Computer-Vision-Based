@@ -1,0 +1,10 @@
+{"request_id": 134217729, "agent_id": 8, "origin": 8, "volume_ml": 500, "outcome": "served", "t_request": 9.272130400000265, "t_dispense": 9.272130400000265, "latency_s": 0.0, "hops": 0, "dispensed_ml": 500, "cv_score": 0.95}
+{"request_id": 134217730, "agent_id": 8, "origin": 8, "volume_ml": 500, "outcome": "forwarded", "t_request": 88.2346428400001, "t_dispense": 88.53876416499986, "latency_s": 0.304, "hops": 0, "to": 5}
+{"request_id": 134217731, "agent_id": 8, "origin": 8, "volume_ml": 500, "outcome": "timeout", "t_request": 118.79252205, "t_dispense": 238.83423069499997, "latency_s": 120.042, "hops": 0}
+{"request_id": 134217732, "agent_id": 8, "origin": 8, "volume_ml": 500, "outcome": "forwarded", "t_request": 239.89413571, "t_dispense": 249.81180116500013, "latency_s": 9.918, "hops": 0, "to": 4}
+{"request_id": 134217733, "agent_id": 8, "origin": 8, "volume_ml": 500, "outcome": "forwarded", "t_request": 250.58161625000025, "t_dispense": 250.8934680499999, "latency_s": 0.312, "hops": 0, "to": 2}
+{"request_id": 134217734, "agent_id": 8, "origin": 8, "volume_ml": 500, "outcome": "forwarded", "t_request": 251.65900717499994, "t_dispense": 251.96722950500032, "latency_s": 0.308, "hops": 0, "to": 1}
+{"request_id": 134217735, "agent_id": 8, "origin": 8, "volume_ml": 500, "outcome": "forwarded", "t_request": 252.72809766000023, "t_dispense": 253.03897696000035, "latency_s": 0.311, "hops": 0, "to": 3}
+{"request_id": 134217736, "agent_id": 8, "origin": 8, "volume_ml": 500, "outcome": "forwarded", "t_request": 253.80628860000002, "t_dispense": 254.11392788499995, "latency_s": 0.308, "hops": 0, "to": 2}
+{"request_id": 134217737, "agent_id": 8, "origin": 8, "volume_ml": 500, "outcome": "forwarded", "t_request": 254.87517433999983, "t_dispense": 255.18631873000004, "latency_s": 0.311, "hops": 0, "to": 1}
+{"request_id": 134217738, "agent_id": 8, "origin": 8, "volume_ml": 500, "outcome": "forwarded", "t_request": 255.95083235999994, "t_dispense": 256.25986315000034, "latency_s": 0.309, "hops": 0, "to": 4}

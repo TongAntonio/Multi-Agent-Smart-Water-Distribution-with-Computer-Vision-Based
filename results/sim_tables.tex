@@ -1,0 +1,24 @@
+% ---- ablation, 0% loss (rows of the laboratory-style table, simulated) ----
+Heuristic baseline & 94.8$\pm$4.8 & 11.9$\pm$6.9 & 0.894$\pm$0.085\\
+Centralized baseline & 95.1$\pm$4.1 & 13.1$\pm$6.2 & 0.887$\pm$0.078\\
+No forecast input & 95.5$\pm$3.9 & 15.6$\pm$8.5 & 0.882$\pm$0.088\\
+No volume estimate & 94.6$\pm$4.2 & 15.2$\pm$7.8 & 0.879$\pm$0.084\\
+No fairness term in reward & 95.1$\pm$4.0 & 13.7$\pm$7.4 & 0.888$\pm$0.082\\
+Proposed (PPO, full) & 95.7$\pm$4.0 & 13.7$\pm$7.8 & 0.893$\pm$0.083\\
+
+% ---- packet loss: success rate (%) ----
+0\% & 94.8$\pm$4.8 & 95.1$\pm$4.1 & 95.7$\pm$4.0\\
+20\% & 95.0$\pm$4.4 & 96.3$\pm$3.6 & 95.7$\pm$4.0\\
+30\% & 95.2$\pm$4.2 & 94.8$\pm$3.9 & 95.4$\pm$3.9\\
+40\% & 94.8$\pm$4.7 & 83.4$\pm$5.7 & 95.5$\pm$4.0\\
+
+% ---- broker outage: success of requests arriving during the outage (%), mean latency (s), backlog clearing time (s) ----
+No outage & Heuristic & 98.9$\pm$3.1 & 11.9$\pm$6.9 & 22\\
+No outage & Centralized & 98.9$\pm$2.6 & 13.1$\pm$6.2 & 24\\
+No outage & Proposed & 98.7$\pm$3.0 & 13.7$\pm$7.8 & 32\\
+Outage 100--200\,s & Heuristic & 97.1$\pm$3.4 & 40.4$\pm$10.2 & 76\\
+Outage 100--200\,s & Centralized & 96.0$\pm$5.5 & 58.7$\pm$6.2 & 85\\
+Outage 100--200\,s & Proposed & 96.3$\pm$4.6 & 42.2$\pm$9.5 & 79\\
+Outage for the whole run & Heuristic & 70.4$\pm$5.5 & 62.2$\pm$14.6 & --\\
+Outage for the whole run & Centralized & 0.0$\pm$0.0 & n/a & --\\
+Outage for the whole run & Proposed & 70.4$\pm$5.3 & 62.2$\pm$14.3 & --\\

@@ -1,0 +1,59 @@
+{
+  "git_commit": "caa4b19",
+  "python": "3.13.18",
+  "numpy": "2.5.3",
+  "eval_seeds": 30,
+  "agents": 20,
+  "requests": 100,
+  "central_timeout_s": 3.0,
+  "drops": [
+    0.0,
+    0.2,
+    0.3,
+    0.4
+  ],
+  "outages": {
+    "none": null,
+    "window_100_200": [
+      100.0,
+      200.0
+    ],
+    "whole_run": [
+      0.0,
+      1000000000.0
+    ]
+  },
+  "ppo_train_seeds": {
+    "full": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "no_forecast": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "no_volume": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "no_fairness": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "gymnasium": "1.4.0",
+  "stable_baselines3": "2.9.2",
+  "torch": "2.15.0+cu132"
+}

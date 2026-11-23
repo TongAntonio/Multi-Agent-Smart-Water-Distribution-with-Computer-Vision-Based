@@ -1,0 +1,2 @@
+{"request_id": 150994945, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "served", "t_request": 98.73970406000012, "t_dispense": 98.73970406000012, "latency_s": 0.0, "hops": 0, "dispensed_ml": 500, "cv_score": 0.95}
+{"request_id": 150994946, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "forwarded", "t_request": 116.33038011500048, "t_dispense": 116.48474989000078, "latency_s": 0.154, "hops": 0, "to": 5}

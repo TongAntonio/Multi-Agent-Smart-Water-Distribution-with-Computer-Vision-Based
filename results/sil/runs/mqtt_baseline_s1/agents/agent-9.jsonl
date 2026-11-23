@@ -1,0 +1,10 @@
+{"request_id": 150994945, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "served", "t_request": 54.40800113999984, "t_dispense": 54.40800113999984, "latency_s": 0.0, "hops": 0, "dispensed_ml": 500, "cv_score": 0.95}
+{"request_id": 150994946, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "forwarded", "t_request": 88.16369735999984, "t_dispense": 88.4670226, "latency_s": 0.303, "hops": 0, "to": 1}
+{"request_id": 150994947, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "forwarded", "t_request": 129.4838587199999, "t_dispense": 129.78767086000005, "latency_s": 0.304, "hops": 0, "to": 4}
+{"request_id": 150994948, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "forwarded", "t_request": 147.75556679999994, "t_dispense": 148.06078101999987, "latency_s": 0.305, "hops": 0, "to": 5}
+{"request_id": 150994949, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "forwarded", "t_request": 168.48368501500005, "t_dispense": 168.7885190350002, "latency_s": 0.305, "hops": 0, "to": 4}
+{"request_id": 150994950, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "forwarded", "t_request": 182.24883204999998, "t_dispense": 182.55265591999972, "latency_s": 0.304, "hops": 0, "to": 2}
+{"request_id": 150994951, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "forwarded", "t_request": 183.76511832499972, "t_dispense": 184.07353622499983, "latency_s": 0.308, "hops": 0, "to": 1}
+{"request_id": 150994952, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "forwarded", "t_request": 234.81594621499966, "t_dispense": 235.12054574500013, "latency_s": 0.305, "hops": 0, "to": 3}
+{"request_id": 150994953, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "forwarded", "t_request": 255.84631867000013, "t_dispense": 256.1504234999998, "latency_s": 0.304, "hops": 0, "to": 2}
+{"request_id": 150994954, "agent_id": 9, "origin": 9, "volume_ml": 500, "outcome": "forwarded", "t_request": 261.43638111499996, "t_dispense": 261.7402615649999, "latency_s": 0.304, "hops": 0, "to": 4}
