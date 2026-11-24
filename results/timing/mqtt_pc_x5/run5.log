@@ -1,0 +1,26 @@
+
+Machine: Windows-11-10.0.26200-SP0 | AMD64 | Python 3.14.2
+Components: hardware=sim; link=mqtt; detector=stub (no image work); policy=NumpyPolicy policy.npz; forecaster=moving-average fallback
+Timed 2000 ticks (+100 warm-up), stopwatch overhead 200 ns per call
+
+stage                            n    mean_ms     p50_ms     p95_ms     p99_ms     max_ms
+agent.decide                   166     0.9371     1.0058     1.5654     2.1968     2.6214
+agent.on_arrival               166     0.0097     0.0093     0.0130     0.0153     0.0316
+agent.step                    2000     0.1429     0.0129     1.0948     1.5856     2.9053
+forecast.predict               666     0.0010     0.0009     0.0015     0.0021     0.0059
+forecast.record_request        166     0.0019     0.0018     0.0025     0.0029     0.0050
+forecast.tick                 2000     0.0011     0.0009     0.0020     0.0027     0.0081
+hw.dispense                    125     0.0026     0.0026     0.0034     0.0042     0.0051
+hw.read                       2000     0.0025     0.0018     0.0054     0.0072     0.0297
+link.poll                     2000     0.0022     0.0008     0.0089     0.0176     0.0338
+link.send                      541     0.1554     0.1384     0.3036     0.4001     0.5533
+perception.detect              332     0.0015     0.0013     0.0023     0.0033     0.0164
+policy.act                     166     0.0668     0.0653     0.0869     0.1269     0.1298
+spec.best_neighbor             166     0.0032     0.0031     0.0046     0.0063     0.0076
+spec.build_observation         166     0.0190     0.0180     0.0255     0.0360     0.0373
+
+Link round trip (mqtt): n=200, lost=0, mean 1.191 ms, p50 1.174, p95 1.407, max 1.834
+
+Control tick budget: the loop sleeps 250 ms between ticks; agent.step p99 = 1.59 ms (0.6 % of the tick).
+
+written: results/timing/mqtt_pc_x5/run5.json
