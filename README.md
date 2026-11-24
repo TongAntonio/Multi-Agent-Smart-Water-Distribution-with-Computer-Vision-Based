@@ -208,6 +208,14 @@ python -m agent.main --config config/agent.yaml
 `models/policy.npz` is a demo policy trained **in the simulator**; retrain after changing `sim/env.py` or `agent/spec.py`
 (the observation layout must match between training and deployment).
 
+## License
+
+The code written for this project is released under the [MIT License](LICENSE); the image dataset under CC BY 4.0 (below). Third-party files keep their own licenses: the
+Angular admin dashboard in `Admin-Web/` bundles the SB Admin 2 template and the Bootstrap, jQuery, Flot, Morris.js, DataTables,
+Font Awesome and related libraries under `Admin-Web/Angular-WebApp/dist/assets/` (headers and license files in those folders apply).
+The dataset folder `computer-vision-based-container-detection-for-disaster-relief-in-smart-cities-export/` (134 images and labels)
+is licensed separately under [CC BY 4.0](computer-vision-based-container-detection-for-disaster-relief-in-smart-cities-export/LICENSE.md).
+
 ## How to cite
 
 `CITATION.cff` (GitHub's "Cite this repository" button) and `.zenodo.json` hold the citation metadata. Cite the paper for the
