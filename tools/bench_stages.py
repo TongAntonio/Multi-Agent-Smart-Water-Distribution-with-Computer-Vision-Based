@@ -215,9 +215,35 @@ class Clock:
 
 
 # ---------------------------------------------------------------- workload
-def drive(agent, hw, peer, clock, steps: int, tick_s: float, first: int = 0) -> None:
+def answer_forwards(peer) -> None:
+    for m in peer.poll():
+        if isinstance(m, Forward):
+            peer.send(Ack(2, m.src, m.seq, m.request_id))
+
+
+def settle(agent, peer, timeout_s: float) -> bool:
+    """Wait in real time until every forward the agent has outstanding reached the peer and the peer's ACK is back in the
+    agent's MQTT inbox, so the next step() handles the ACK. Needed with a real broker: the simulated clock advances a whole
+    tick per step in microseconds of real time, so without waiting forward_ack_timeout_s (simulated) runs out long before
+    the ACK arrives and every forward "fails". The wait is between steps, so it is not part of any timed stage.
+    Returns False if the ACKs did not arrive within timeout_s (the agent then retries/gives up as in the field)."""
+    want = set(agent.pending)
+    deadline = time.perf_counter() + timeout_s
+    while True:
+        answer_forwards(peer)
+        if not want or want <= {m.request_id for m in list(agent.link.q.queue) if isinstance(m, Ack)}:
+            return True
+        if time.perf_counter() >= deadline:
+            return False
+        time.sleep(0.0002)
+
+
+def drive(agent, hw, peer, clock, steps: int, tick_s: float, first: int = 0, settle_s: float = 0.0) -> int:
     """Scripted user cycles: arrival -> decision -> absence. Every LOW_EVERY-th cycle the tank is too low, so the forward path
-    (best_neighbor, Forward, ACK, pending bookkeeping) runs; the peer answers every Forward with an ACK and sends a State."""
+    (best_neighbor, Forward, ACK, pending bookkeeping) runs; the peer answers every Forward with an ACK and sends a State.
+    settle_s > 0 (MQTT link): wait up to settle_s real seconds per step for outstanding ACKs (see settle()).
+    Returns the number of steps whose ACKs did not arrive within settle_s."""
+    late = 0
     for k in range(first, first + steps):
         ph, cyc = k % CYCLE, k // CYCLE
         if ph == 0:
@@ -226,10 +252,12 @@ def drive(agent, hw, peer, clock, steps: int, tick_s: float, first: int = 0) -> 
         if k % 5 == 0:
             peer.send(State(2, k & 0xFFFF, 0, 8000.0, 1.0, False, 30.0, 60.0))
         agent.step()
-        for m in peer.poll():
-            if isinstance(m, Forward):
-                peer.send(Ack(2, m.src, m.seq, m.request_id))
+        if settle_s > 0:
+            late += not settle(agent, peer, settle_s)
+        else:
+            answer_forwards(peer)
         clock.t += tick_s
+    return late
 
 
 # ---------------------------------------------------------------- reporting
@@ -259,10 +287,14 @@ def main() -> None:
     ap.add_argument("--tcp-nodelay", action="store_true",
                     help="set TCP_NODELAY on the MQTT client sockets (also set_tcp_nodelay true in mosquitto.conf; see README)")
     ap.add_argument("--state-period", type=float, default=1.0, help="seconds between state broadcasts in the benchmark (default 1)")
+    ap.add_argument("--settle", type=float, default=None,
+                    help="real seconds to wait per step for a forward's ACK to come back (default 2 with --link mqtt, 0 with memory)")
     ap.add_argument("--roundtrips", type=int, default=200, help="link round trips to time (0 = skip)")
     ap.add_argument("--out", default=None, help="JSON result file (default results/timing/<utc>.json)")
     ap.add_argument("--raw", default=None, help="also write every sample (ns) to this CSV file")
     args = ap.parse_args()
+    if args.settle is None:
+        args.settle = 2.0 if args.link == "mqtt" else 0.0
 
     cfg = load_config(args.config)
     cfg["agent_id"], tick_s = 1, float(cfg["tick_s"])
@@ -277,11 +309,13 @@ def main() -> None:
     timer = StageTimer()
     info = machine_info()
     try:
-        drive(agent, hw, peer, clock, args.warmup, tick_s)
+        drive(agent, hw, peer, clock, args.warmup, tick_s, settle_s=args.settle)
         wrapped = instrument_agent(agent, timer)
         t0 = time.perf_counter()
-        drive(agent, hw, peer, clock, args.steps, tick_s, first=args.warmup)
+        late = drive(agent, hw, peer, clock, args.steps, tick_s, first=args.warmup, settle_s=args.settle)
         wall = time.perf_counter() - t0
+        if late:
+            print(f"warning: {late} steps did not get their ACKs within --settle {args.settle} s", file=sys.stderr)
         rt = None
         if args.roundtrips:
             if args.link == "mqtt":
@@ -305,6 +339,7 @@ def main() -> None:
     result = {"utc": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"), "machine": info,
               "components": comp, "steps": args.steps, "warmup": args.warmup, "tick_s_simulated": tick_s,
               "state_period_s": args.state_period, "wall_s_for_timed_steps": wall,
+              "settle_s": args.settle, "steps_without_ack_in_time": late,
               "stopwatch_overhead_ns": timer.overhead_ns(), "stages": summary,
               "link_roundtrip": {k: v for k, v in rt.items() if k != "rtt_ms"} if rt else None}
     print(f"\nMachine: {info['device_model'] or info['platform']} | {info['machine']} | Python {info['python']}")
