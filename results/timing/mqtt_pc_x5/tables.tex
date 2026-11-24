@@ -1,0 +1,36 @@
+% Software timing of the edge-agent control loop over MQTT.
+% Source: tools/bench_stages.py --link mqtt --mqtt-host localhost (commit 4cf1c4d), 5 runs,
+% results/timing/mqtt_pc_x5/run1-5.json. Windows 11 PC, NOT a Raspberry Pi / Jetson Nano.
+\begin{table}[t]
+\centering
+\caption{Per-stage software timing of the agent control loop with the MQTT link
+(mean $\pm$ s.d.\ over 5 runs of 2000 ticks). Measured on a Windows~11 PC with
+Mosquitto~2.1.4 on the loopback interface, simulated sensors and pump, and a stub
+container detector (no model inference). These are not Raspberry~Pi measurements.}
+\label{tab:stage-timing-pc}
+\begin{tabular}{lrrr}
+\hline
+Stage & $n$ per run & Mean (ms) & p99 (ms) \\
+\hline
+Control tick (\texttt{agent.step}) & 2000 & $0.156 \pm 0.010$ & $1.73 \pm 0.14$ \\
+Decision (\texttt{agent.decide})   & 166  & $1.01 \pm 0.07$   & $1.95 \pm 0.24$ \\
+MQTT publish (\texttt{link.send})  & 541  & $0.172 \pm 0.011$ & $0.46 \pm 0.05$ \\
+PPO actor (\texttt{policy.act})    & 166  & $0.078 \pm 0.013$ & $0.19 \pm 0.09$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Forward/ACK round trip between two agents through the MQTT broker
+(5 runs $\times$ 200 round trips, none lost; mean $\pm$ s.d.\ across runs).
+Same PC and loopback broker as Table~\ref{tab:stage-timing-pc}; no Wi-Fi or radio link.}
+\label{tab:mqtt-rtt-pc}
+\begin{tabular}{cccc}
+\hline
+Mean (ms) & p50 (ms) & p95 (ms) & Max (ms) \\
+\hline
+$1.18 \pm 0.01$ & $1.16 \pm 0.02$ & $1.36 \pm 0.04$ & $2.04 \pm 0.43$ \\
+\hline
+\end{tabular}
+\end{table}
